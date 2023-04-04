@@ -13,10 +13,15 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @tags = Tag.all
   end
 
   # GET /products/1/edit
   def edit
+  end
+
+  def product_params
+    params.require(:product).permit(:name, :description, :price, tag_ids: [])
   end
 
   # POST /products or /products.json

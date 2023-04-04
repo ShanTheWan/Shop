@@ -21,14 +21,11 @@
     <%= form.text_area :description %>
   </div>
 
-  <%= form_with(model: @product, local: true) do |form| %>
-    <!-- other form fields -->
-    <div class="field">
-      <%= form.label :tag_ids, "Tags" %>
-      <%= form.collection_select :tag_ids, Tag.all, :id, :name, {}, { multiple: true } %>
-    </div>
-  <% end %>
-  
+  <div class="field">
+  <%= form.label :tag_ids %><br>
+  <%= form.select :tag_ids, options_for_select(@tags.map{ |t| [t.name, t.id] }), {}, { multiple: true } %>
+</div>
+
   <div>
     <%= form.label :price, style: "display: block" %>
     <%= form.text_field :price %>
